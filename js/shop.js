@@ -67,27 +67,74 @@ var total = 0;
 function buy(id) {
     // 1. Loop for to the array products to get the item to add to cart
     // 2. Add found product to the cartList array
+    let totalProducts = products.length;
+    for (let i = 0; i < totalProducts; i++) {
+        if (id === products[i].id) {
+            cartList.push(products[i]);
+            console.log("Product " + products[i].name + " added to cart.");
+            return true;
+        }
+    }
+    console.error("Product ID does not exist.");
+    return false;
 }
 
 // Exercise 2
 function cleanCart() {
-
+    cartList = [];
 }
 
 // Exercise 3
 function calculateTotal() {
     // Calculate total price of the cart using the "cartList" array
+    let totalCartLength = cartList.length;
+    let cartListTotalAmount = 0;
+    for (let i = 0; i < totalCartLength; i++ ) {
+        cartListTotalAmount += cartList[i].price;
+    }
+    console.log("Cart Total: $" + cartListTotalAmount);
+    return cartListTotalAmount;
 }
 
 // Exercise 4
-function generateCart() {
+function generateCartV2(tempCart) {
     // Using the "cartlist" array that contains all the items in the shopping cart, 
     // generate the "cart" array that does not contain repeated items, instead each item of this array "cart" shows the quantity of product.
+    cart = [];
+    let tempCartLength = tempCart.length;
+    for(let i = 0 ; i < tempCartLength ; i++) {
+        let currentItem = tempCart[i];
+        let cartLength = cart.length;
+        let itemFound = false;
+        for (let j = 0; j < cartLength && !itemFound; j++) {
+            if (currentItem.id === cart[j].id) {
+                itemFound = true;
+                cart[j].quantity++;
+            }
+        }
+        if (!itemFound){
+            cart.push(currentItem);
+            cart[cart.length - 1].quantity = 1;
+        }
+    }
+    return cart;
 }
 
 // Exercise 5
-function applyPromotionsCart() {
+function applyPromotionsCart(shopcart) {
     // Apply promotions to each item in the array "cart"
+    let shopcartLength = shopcart.length;
+    for (let i = 0; i < shopcartLength; i++) {
+        // Promo cooking oil
+        if (shopcart[i].id === 1 && shopcart[i].quantity >= 3)
+            shopcart[i].subtotalWithDiscount = 10 * shopcart[i].quantity;
+        // Promo cupcake mixture
+        if (shopcart[i].id === 3 && shopcart[i].quantity >= 10){
+            shopcart[i].subtotalWithDiscount = (shopcart[i].price * 2 / 3) * shopcart[i].quantity;
+            shopcart[i].subtotalWithDiscount = Math.round(shopcart[i].subtotalWithDiscount * 100) / 100;
+        }
+    }
+    return cart;
 }
 
 
