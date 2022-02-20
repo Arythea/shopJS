@@ -103,7 +103,7 @@ function generateCart(tempCart) {
     cart = [];
     let tempCartLength = tempCart.length;
     for (let i = 0 ; i < tempCartLength ; i++) {
-        existingCartIndex = cart.findIndex((element) => element.id === tempCart[i].id);
+        let existingCartIndex = cart.findIndex((element) => element.id === tempCart[i].id);
         if (existingCartIndex >= 0) {
             cart[existingCartIndex].quantity++;
             cart[existingCartIndex].subtotal = cart[existingCartIndex].price * cart[existingCartIndex].quantity;
@@ -139,15 +139,56 @@ function addToCart(id) {
     // Refactor previous code in order to simplify it 
     // 1. Loop for to the array products to get the item to add to cart
     // 2. Add found product to the cart array or update its quantity in case it has been added previously.
+    let existingProductIndex = products.findIndex((element) => element.id === id);
+    if(existingProductIndex >= 0){
+        let existingCartIndex = cart.findIndex((element) => element.id === id);
+        if(existingCartIndex >= 0){
+            cart[existingCartIndex].quantity++;
+            cart[existingCartIndex].subtotal = cart[existingCartIndex].price * cart[existingCartIndex].quantity;
+        }else{
+            cart.push(products[existingProductIndex]);
+            cart[cart.length - 1].quantity = 1;
+            cart[cart.length - 1].subtotal = cart[cart.length - 1].price;
+        }
+        return true;
+    }else{
+        console.error("Product ID does not exist.");
+        return false;
+    }
 }
 
 // Exercise 8
 function removeFromCart(id) {
     // 1. Loop for to the array products to get the item to add to cart
     // 2. Add found product to the cartList array
+    let existingCartIndex = cart.findIndex((element) => element.id === id);
+    if(existingCartIndex >= 0){
+        if(cart[existingCartIndex].quantity > 1){
+            cart[existingCartIndex].quantity--;
+        }else{
+            cart.splice(existingCartIndex,1);
+        }
+    }else{
+        console.error("Product ID does not exist in the cart.");
+        return false;
+    }
 }
 
 // Exercise 9
 function printCart() {
     // Fill the shopping cart modal manipulating the shopping cart dom
+    let list = document.querySelector('#cartModal .list');
+    let total = 0;
+    for(let i in cart){
+        if(cart[i].subtotalWithDiscount !== undefined){
+            itemTotal = cart[i].subtotalWithDiscount;
+            itemOldTotal = " (<s>" + cart[i].subtotal + "€</s>)";
+        }else{
+            itemTotal = cart[i].subtotal;
+            itemOldTotal = "";
+        }
+        total += itemTotal;
+        list.innerHTML += `<li>${itemTotal}€ - ${cart[i].quantity} x ${cart[i].name} - ${cart[i].price}€ ${itemOldTotal}</li>`;
+    }
+    list.innerHTML += `<hr>Total: ${total}`;
 }
