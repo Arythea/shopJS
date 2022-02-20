@@ -106,9 +106,11 @@ function generateCart(tempCart) {
         existingCartIndex = cart.findIndex((element) => element.id === tempCart[i].id);
         if (existingCartIndex >= 0) {
             cart[existingCartIndex].quantity++;
+            cart[existingCartIndex].subtotal = cart[existingCartIndex].price * cart[existingCartIndex].quantity;
         }else{
             cart.push(tempCart[i]);
             cart[cart.length - 1].quantity = 1;
+            cart[cart.length - 1].subtotal = cart[cart.length - 1].price;
         }
     }
 }
@@ -127,7 +129,6 @@ function applyPromotionsCart(shopcart) {
             shopcart[i].subtotalWithDiscount = Math.round(shopcart[i].subtotalWithDiscount * 100) / 100;
         }
     }
-    return cart;
 }
 
 
