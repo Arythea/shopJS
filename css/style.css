@@ -1,4 +1,51 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins');
-body{
+body {
     font-family: Poppins;
+}
+/* custom */
+#logo {
+    max-width: 300px;
+}
+.btn-primary {
+    color: #fff;
+    background-color: #086099;
+    border-color: #086099;
+    transition: 0.25s;
+}
+.btn-primary:hover {
+    background-color: #086099;
+    opacity: 0.6;
+}
+#categories {
+    height: 340px;
+}
+.category {
+    margin: 10px;
+    height: 100px;
+    background-color: #ddd;
+}
+#categoryAll {
+    height: 340px;
+}
+#categoryAll { background-image: url('../images/category-all.jpg'); }
+#categoryGrocery { background-image: url('../images/category-grocery.jpg'); }
+#categoryBeauty { background-image: url('../images/category-beauty.jpg'); }
+#categoryClothes { background-image: url('../images/category-clothes.jpg'); }
+.category {
+    background-size: 100%;
+    color: white;
+    text-shadow: 1px 1px 1px #666;
+    cursor: pointer;
+    transition: all 0.5s;
+    background-position: center center;
+}
+.category:hover {
+    background-size: 120%;
+}
+footer {
+    color: white;
+    background-color: black;
+    position: absolute;
+    bottom: 0;
+    padding: 10px 0;
 }
