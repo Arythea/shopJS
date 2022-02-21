@@ -14,7 +14,7 @@ var products = [
     },
     {
         id: 3,
-        name: 'Instant cupcake mixture',
+        name: 'Instant cupcake',
         price: 5,
         type: 'grocery'
     },
@@ -44,7 +44,7 @@ var products = [
     },
     {
         id: 8,
-        name: 'Lawn-Chiffon Combo',
+        name: 'Lawn-Chiffon',
         price: 19.99,
         type: 'clothes'
     },
@@ -121,12 +121,14 @@ function applyPromotionsCart(shopcart) {
     let shopcartLength = shopcart.length;
     for (let i = 0; i < shopcartLength; i++) {
         // Promo cooking oil
-        if (shopcart[i].id === 1 && shopcart[i].quantity >= 3)
+        if (shopcart[i].id === 1 && shopcart[i].quantity >= 3){
             shopcart[i].subtotalWithDiscount = 10 * shopcart[i].quantity;
+        } else if (shopcart[i].id === 3 && shopcart[i].quantity >= 10){
         // Promo cupcake mixture
-        if (shopcart[i].id === 3 && shopcart[i].quantity >= 10){
             shopcart[i].subtotalWithDiscount = (shopcart[i].price * 2 / 3) * shopcart[i].quantity;
             shopcart[i].subtotalWithDiscount = Math.round(shopcart[i].subtotalWithDiscount * 100) / 100;
+        } else {
+            delete shopcart[i].subtotalWithDiscount;
         }
     }
 }
@@ -155,6 +157,7 @@ function addToCart(id) {
         console.error("Product ID does not exist.");
         return false;
     }
+    printCart();
 }
 
 // Exercise 8
@@ -165,6 +168,7 @@ function removeFromCart(id) {
     if(existingCartIndex >= 0){
         if(cart[existingCartIndex].quantity > 1){
             cart[existingCartIndex].quantity--;
+            cart[existingCartIndex].subtotal = cart[existingCartIndex].quantity * cart[existingCartIndex].price;
         }else{
             cart.splice(existingCartIndex,1);
         }
@@ -177,18 +181,27 @@ function removeFromCart(id) {
 // Exercise 9
 function printCart() {
     // Fill the shopping cart modal manipulating the shopping cart dom
+    applyPromotionsCart(cart);
     let list = document.querySelector('#cartModal .list');
+    list.innerHTML = "";
     let total = 0;
-    for(let i in cart){
-        if(cart[i].subtotalWithDiscount !== undefined){
-            itemTotal = cart[i].subtotalWithDiscount;
-            itemOldTotal = " (<s>" + cart[i].subtotal + "€</s>)";
-        }else{
-            itemTotal = cart[i].subtotal;
-            itemOldTotal = "";
+    if (cart.length > 0) {
+        list.innerHTML += `<li><ul class="headlist"><li>Product</li><li class="d-none d-md-inline-block">Price</li><li>Subtotal</li><li class="d-none d-md-inline-block">Old price</li><li>Modify</li></ul></li>`;
+        document.getElementById('checkout-btn').style.display = 'inline-block';
+        for(let i in cart){
+            if(cart[i].subtotalWithDiscount !== undefined){
+                itemTotal =  cart[i].subtotalWithDiscount;
+                itemOldTotal = " (<s>" + parseFloat(Math.round(cart[i].subtotal*100)/100).toFixed(2) + "€</s>) ";
+            }else{
+                itemTotal =  cart[i].subtotal;
+                itemOldTotal = "";
+            }
+            total += itemTotal;
+            list.innerHTML += `<li><ul><li>${cart[i].quantity} x ${cart[i].name}</li><li class="d-none d-md-inline-block">${parseFloat(cart[i].price).toFixed(2)}€</li><li>${parseFloat(itemTotal).toFixed(2)}€</li><li class="d-none d-md-inline-block">${itemOldTotal}</li><li><i class="fas fa-minus" onclick="removeFromCart(${cart[i].id});printCart();"></i> <i class="fas fa-plus" onclick="addToCart(${cart[i].id});printCart()"></li></li></ul></li>`;
         }
-        total += itemTotal;
-        list.innerHTML += `<li>${itemTotal}€ - ${cart[i].quantity} x ${cart[i].name} - ${cart[i].price}€ ${itemOldTotal}</li>`;
+    } else {
+        list.innerHTML += '<li class="text-center">Cart is empty</li>';
+        document.getElementById('checkout-btn').style.display = 'none';
     }
-    list.innerHTML += `<hr>Total: ${total}`;
+    list.innerHTML += `<li class="list-total"><hr><b>Total: ${parseFloat(total).toFixed(2)}€ <b></li>`;
 }

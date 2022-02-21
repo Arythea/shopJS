@@ -14,6 +14,9 @@ body {
 .nav-link:hover {
     color: white;
 }
+.navbar-toggler-icon {
+    color: white;
+}
 .grocery-img {
     width: 60%;
     margin: 1rem auto;
@@ -48,6 +51,7 @@ body {
     background: url('../images/slide.jpg') no-repeat center top;
     background-size: cover;
     margin-bottom: 40px;
+    margin-bottom: -40px;
 }
 .category-list {
     padding-top: 110px;
@@ -62,4 +66,45 @@ footer {
     color: white;
     background-color: black;
     padding: 10px 0;
+}
+.list {
+    margin: 0;
+    padding-left: 0;
+}
+.list ul {
+    padding-left: 0;
+}
+.list li{
+    list-style: none;
+}
+.list li ul.headlist li {
+    text-shadow: 0px 0px 1px black;
+}
+.list li ul li {
+    display: inline-block;
+    width: 100px;
+}
+.list li ul li:nth-child(1) {
+    width: 200px;
+}
+.fa-minus, .fa-plus {
+    cursor: pointer;
+}
+.list-total {
+    margin-left: 40px;
+    text-shadow: 0px 0px 1px black;
+}
+.modal-dialog {
+    width: 90%;
+    max-width: 800px;
+}
+@media screen and (max-width: 768px) {
+    .list li ul li {
+        display: inline-block;
+        width: 80px;
+        line-height: 1.2;
+    }
+    .list li ul li:nth-child(1) {
+        width: 140px;
+    }
 }
