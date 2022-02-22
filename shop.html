@@ -20,123 +20,134 @@
 
   <!-- navbar -->
   <nav class="navbar navbar-expand-md bg-secondary sticky-top">
-    <a class="navbar-brand text-white" href="index.html"><span><i class="fas fa-shopping-cart mr-2"></i></span>
-      <span>Volver</span> </a>
+    <a class="navbar-brand text-white" href="index.html">
+      <img src="images/logo-neg.png" alt="logo" id="logo"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+      <span class="navbar-toggler-icon"><i class="fas fa-bars"></i></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
+          
+          <a class="nav-link text-white btn" id="access" type="button">
+            <input type="text" placeholder="search..." id="search">
+            <i class="fas fa-search"></i>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white btn" id="access" type="button"><i class="fas fa-user"></i>
+            Access</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link text-white btn" id="cart" type="button" data-toggle="modal"
-            data-target="#cartModal" onclick="cart()" href="#beauty"><i class="fas fa-cart-arrow-down"></i>
+            data-target="#cartModal" onclick="printCart()" href="#beauty"><i class="fas fa-cart-arrow-down"></i>
             My Cart</a>
         </li>
       </ul>
     </div>
   </nav>
 
-  <h1 class="text-center mt-3 m-5">Welcome to the ShopNow</h1>
+  <div id="slide"></div>
 
   <!-- Grocery part -->
-  <section>
+  <section id="grocery" class="container category-list align-center">
     <h2 class="text-center"><i class="fas fa-shopping-basket mr-2"></i>Grocery</h2>
-    <div id="grocery" class="row ml-3 m-5">
+    <div class="row justify-content-center">
 
-      <div class="card col-sm-3 m-1 ml-5 p-4" style="width: 18rem;">
+      <div class="card col-lg-3 m-1" style="width: 18rem;">
         <img src="./images/product.svg" class="grocery-img">
         <div class="card-body text-center">
           <h5 class="card-title">cooking oil</h5>
           <h1 class="card-text">$10.5</h1>
-          <button type="button" onclick="buy(1)" class="btn btn-primary">Add to cart</button>
+          <button type="button" onclick="addToCart(1)" class="btn btn-primary">Add to cart</button>
         </div>
       </div>
 
-      <div class="card col-sm-3 m-1 ml-5 p-4" style="width: 18rem;">
+      <div class="card col-lg-3 m-1" style="width: 18rem;">
         <img src="./images/product.svg" class="grocery-img">
         <div class="card-body text-center">
           <h5 class="card-title">Pasta</h5>
           <h1 class="card-text">$6.25</h1>
-          <button type="button" onclick="buy(2)" class="btn btn-primary">Add to cart</button>
+          <button type="button" onclick="addToCart(2)" class="btn btn-primary">Add to cart</button>
         </div>
       </div>
 
-      <div class="card col-sm-3 m-1 ml-5 p-4" style="width: 18rem;">
+      <div class="card col-lg-3 m-1" style="width: 18rem;">
         <img src="./images/product.svg" class="grocery-img">
         <div class="card-body text-center">
-          <h5 class="card-title">Instant cupcake mixture</h5>
+          <h5 class="card-title">Instant cupcake</h5>
           <h1 class="card-text">$5</h1>
-          <button type="button" onclick="buy(3)" class="btn btn-primary">Add to cart</button>
+          <button type="button" onclick="addToCart(3)" class="btn btn-primary">Add to cart</button>
         </div>
       </div>
     </div>
   </section>
 
   <!-- beauty part -->
-  <section>
+  <section id="beauty" class="container category-list align-center">
     <h2 class="text-center"><i class="fas fa-heart mr-2"></i>Beauty</h2>
-    <div id="beauty" class="row ml-3 m-5">
+    <div class="row justify-content-center">
 
-      <div class="card col-sm-3 m-1 ml-5 p-4" style="width: 18rem;">
+      <div class="card col-lg-3 m-1" style="width: 18rem;">
         <img src="./images/product.svg" class="grocery-img">
         <div class="card-body text-center">
           <h5 class="card-title">All-in-1</h5>
           <h1 class="card-text">$260</h1>
-          <button type="button" onclick="buy(4)" class="btn btn-primary">Add to cart</button>
+          <button type="button" onclick="addToCart(4)" class="btn btn-primary">Add to cart</button>
         </div>
       </div>
 
-      <div class="card col-sm-3 m-1 ml-5 p-4" style="width: 18rem;">
+      <div class="card col-lg-3 m-1" style="width: 18rem;">
         <img src="./images/product.svg" class="grocery-img">
         <div class="card-body text-center">
           <h5 class="card-title">Zero makeup kit</h5>
           <h1 class="card-text">$20.5</h1>
-          <button type="button" onclick="buy(5)" class="btn btn-primary">Add to cart</button>
+          <button type="button" onclick="addToCart(5)" class="btn btn-primary">Add to cart</button>
         </div>
       </div>
 
-      <div class="card col-sm-3 m-1 ml-5 p-4" style="width: 18rem;">
+      <div class="card col-lg-3 m-1" style="width: 18rem;">
         <img src="./images/product.svg" class="grocery-img">
         <div class="card-body text-center">
           <h5 class="card-title">Lip tints</h5>
           <h1 class="card-text">$12.75</h1>
-          <button type="button" onclick="buy(6)" class="btn btn-primary">Add to cart</button>
+          <button type="button" onclick="addToCart(6)" class="btn btn-primary">Add to cart</button>
         </div>
       </div>
     </div>
   </section>
 
   <!-- clothes part -->
-  <section>
+  <section id="clothes" class="container category-list align-center">
     <h2 class="text-center"><i class="fas fa-tshirt mr-2"></i>Clothes</h2>
-    <div id="clothes" class="row ml-3 m-5">
+    <div class="row justify-content-center">
 
-      <div class="card col-sm-3 m-1 ml-5 p-4" style="width: 18rem;">
+      <div class="card col-lg-3 m-1" style="width: 18rem;">
         <img src="./images/product.svg" class="grocery-img">
         <div class="card-body text-center">
           <h5 class="card-title">Lawn dress</h5>
           <h1 class="card-text">$15</h1>
-          <button type="button" onclick="buy(7)" class="btn btn-primary">Add to cart</button>
+          <button type="button" onclick="addToCart(7)" class="btn btn-primary">Add to cart</button>
         </div>
       </div>
 
-      <div class="card col-sm-3 m-1 ml-5 p-4" style="width: 18rem;">
+      <div class="card col-lg-3 m-1" style="width: 18rem;">
         <img src="./images/product.svg" class="grocery-img">
         <div class="card-body text-center">
-          <h5 class="card-title">Lawn-chiffon combo</h5>
+          <h5 class="card-title">Lawn-chiffon</h5>
           <h1 class="card-text">$19.99</h1>
-          <button type="button" onclick="buy(8)" class="btn btn-primary">Add to cart</button>
+          <button type="button" onclick="addToCart(8)" class="btn btn-primary">Add to cart</button>
         </div>
       </div>
 
-      <div class="card col-sm-3 m-1 ml-5 p-4" style="width: 18rem;">
+      <div class="card col-lg-3 m-1" style="width: 18rem;">
         <img src="./images/product.svg" class="grocery-img">
         <div class="card-body text-center">
           <h5 class="card-title">Toddler Frock</h5>
           <h1 class="card-text">$9.99</h1>
-          <button type="button" onclick="buy(9)" class="btn btn-primary">Add to cart</button>
+          <button type="button" onclick="addToCart(9)" class="btn btn-primary">Add to cart</button>
         </div>
       </div>
       
@@ -145,12 +156,11 @@
 
   <!-- modal -->
   <aside>
-    <div class="modal fade" id="cartModal" tabindex="-1" role="dialog"
-      aria-labelledby="cartModalTitle" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-scrollable" role="document">
+    <div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="cartModalTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="cartModalScrollableTitle"><i class="fas fa-cart-arrow-down"></i>My Cart</h5>
+            <h5 class="modal-title" id="cartModalScrollableTitle"><i class="fas fa-cart-arrow-down"></i> My Cart</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -161,11 +171,8 @@
               <ul class="list">
 
               </ul>
-              <div>
-                <h3 class="text-center bill px-5">Select Something</h3>
-              </div>
               <div class="text-center"> 
-                <a href="checkout.html" class="btn btn-primary m-3">Checkout</a>
+                <a href="checkout.html" class="btn btn-primary m-3" id="checkout-btn">Checkout</a>
               </div>
             </div>
             <!-- listing items ends -->
@@ -177,6 +184,27 @@
       </div>
     </div>
   </aside>
+  <div id="pre-footer" class="container-fluid">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-3 mt-2 mt-sm-0 text-center">
+          <i class="fas fa-lock"></i> Secure payment
+        </div>
+        <div class="col-sm-3 mt-2 mt-sm-0 text-center">
+          <i class="fas fa-truck"></i> 24-48h delivery
+        </div>
+        <div class="col-sm-3 mt-2 mt-sm-0 text-center">
+          <i class="fas fa-tag"></i> Daily sales
+        </div>
+        <div class="col-sm-3 mt-2 mt-sm-0 text-center">
+          <i class="fas fa-phone"></i> Customer service
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="container-fluid text-center">
+    All right reservec © 2022 - Dympo S.L. | Privacy | Cookies
+  </footer>
 
   <!-- script tags -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

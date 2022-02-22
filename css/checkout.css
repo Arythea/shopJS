@@ -6,3 +6,29 @@ body {
 #errorPassword, #errorName, #errorPhone {
     display: none;
 }
+/* navbar */
+.navbar {
+    background-color: #086099 !important;
+    justify-content: space-between;
+}
+/* custom */
+#logo {
+    max-height: 60px;
+}
+#back {
+    font-size: 30px;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #edaf06;
+    border-color: #edaf06;
+    transition: 0.25s;
+}
+.btn-primary:hover {
+    background-color: #086099;
+    opacity: 0.6;
+}
+h5 {
+    width: 170px;
+}
